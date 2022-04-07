@@ -9,114 +9,114 @@ import { createSlice } from "@reduxjs/toolkit";
 const memoryCardDeck = [
     {
         id: 1,
-        name: "graphql",
-        imageUrl: '/Images/png/graphql.png',
+        name: "vscode",
+        imageUrl: '/Images/png/vscode.png',
         pairedCardId: 2,
         isOpen: true
     },
     {
         id: 2,
-        name: "bootstrap",
-        imageUrl: '/Images/png/bootstrap.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 3,
-        name: "ejs",
-        imageUrl: '/Images/png/ejs.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 4,
-        name: "heroku",
-        imageUrl: '/Images/png/heroku.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 5,
-        name: "html",
-        imageUrl: '/Images/png/html.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 6,
-        name: "javascript",
-        imageUrl: '/Images/png/javascript.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 7,
-        name: "json",
-        imageUrl: '/Images/png/json.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 8,
-        name: "mongoDB",
-        imageUrl: '/Images/png/mongoDB.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 9,
-        name: "netlify",
-        imageUrl: '/Images/png/netlify.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 10,
-        name: "nodejs",
-        imageUrl: '/Images/png/nodejs.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 11,
-        name: "react",
-        imageUrl: '/Images/png/react.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 12,
-        name: "redis",
-        imageUrl: '/Images/png/redis.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 13,
-        name: "redux",
-        imageUrl: '/Images/png/redux.png',
-        pairedCardId: 1,
-        isOpen: false
-    },
-    {
-        id: 14,
         name: "vscode",
         imageUrl: '/Images/png/vscode.png',
         pairedCardId: 1,
         isOpen: false
     },
     {
+        id: 3,
+        name: "bootstrap",
+        imageUrl: '/Images/png/bootstrap.png',
+        pairedCardId: 4,
+        isOpen: false
+    },
+    {
+        id: 4,
+        name: "bootstrap",
+        imageUrl: '/Images/png/bootstrap.png',
+        pairedCardId: 3,
+        isOpen: false
+    },
+    {
+        id: 5,
+        name: "html",
+        imageUrl: '/Images/png/html.png',
+        pairedCardId: 6,
+        isOpen: false
+    },
+    {
+        id: 6,
+        name: "html",
+        imageUrl: '/Images/png/html.png',
+        pairedCardId: 5,
+        isOpen: false
+    },
+    {
+        id: 7,
+        name: "json",
+        imageUrl: '/Images/png/json.png',
+        pairedCardId: 8,
+        isOpen: false
+    },
+    {
+        id: 8,
+        name: "json",
+        imageUrl: '/Images/png/json.png',
+        pairedCardId: 7,
+        isOpen: false
+    },
+    {
+        id: 9,
+        name: "nodejs",
+        imageUrl: '/Images/png/nodejs.png',
+        pairedCardId: 10,
+        isOpen: false
+    },
+    {
+        id: 10,
+        name: "nodejs",
+        imageUrl: '/Images/png/nodejs.png',
+        pairedCardId: 9,
+        isOpen: false
+    },
+    {
+        id: 11,
+        name: "react",
+        imageUrl: '/Images/png/react.png',
+        pairedCardId: 12,
+        isOpen: false
+    },
+    {
+        id: 12,
+        name: "react",
+        imageUrl: '/Images/png/react.png',
+        pairedCardId: 11,
+        isOpen: false
+    },
+    {
+        id: 13,
+        name: "javascript",
+        imageUrl: '/Images/png/javascript.png',
+        pairedCardId: 14,
+        isOpen: false
+    },
+    {
+        id: 14,
+        name: "javascript",
+        imageUrl: '/Images/png/javascript.png',
+        pairedCardId: 13,
+        isOpen: false
+    },
+    {
         id: 15,
-        name: "postman",
-        imageUrl: '/Images/png/postman.png',
-        pairedCardId: 1,
+        name: "redux",
+        imageUrl: '/Images/png/redux.png',
+        pairedCardId: 16,
         isOpen: false
     },
     {
         id: 16,
-        name: "mongoose",
-        imageUrl: '/Images/png/mongoose.png',
-        pairedCardId: 1,
+        name: "redux",
+        imageUrl: '/Images/png/redux.png',
+        pairedCardId: 15,
         isOpen: false
     }
 ]
