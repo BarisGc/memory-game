@@ -6,12 +6,35 @@ import { Row, Col, Card, ListGroup } from 'react-bootstrap'
 function CardList() {
     const dispatch = useDispatch();
     //states
+    const [previousSelection, setPreviousSelection] = useState(null);
+    const [isClickable, setIsClickable] = useState(true)
+    console.log("previousSelection", previousSelection)
     const cards = useSelector((state) => state.memoryCards.items);
 
     console.log("cards", cards)
 
     const handleToggleCards = (card) => {
-        dispatch(toggleCards({ id: card.id }))
+
+        // const isFirstFlip = cards.every((card) => card.isOpen === false);
+        if (previousSelection === null) {
+            dispatch(toggleCards({ id: card.id }))
+            setPreviousSelection(card.id)
+        }
+        else {
+            dispatch(toggleCards({ id: card.id }))
+            setIsClickable(false)
+            setTimeout(() => {
+                const pairOfCard = cards.find((pairedCard) => pairedCard.pairedCardId === card.id);
+                console.log("pairOfCard.isOpen", pairOfCard.isOpen)
+                console.log("card.isOpen", card.isOpen)
+                if (!pairOfCard.isOpen) {
+                    dispatch(toggleCards({ id: card.id }))
+                    dispatch(toggleCards({ id: previousSelection }))
+                }
+                setPreviousSelection(null)
+                setIsClickable(true)
+            }, 1.0 * 1000);
+        }
 
     }
 
@@ -33,7 +56,7 @@ function CardList() {
                                 {/* // className={item.completed ? "completed" : ""}> */}
                                 <Card.Img variant="top" src={'/Images/png/questionmark.png'} className='mx-auto mt-2' />
                                 <Card.Body className='p-1 '>
-                                    <div className='cardFlipper stretched-link' name={`${card.id}`} onClick={() => handleToggleCards(card)}>
+                                    <div className={`cardFlipper ${isClickable ? "stretched-link" : ""}`} name={`${card.id}`} onClick={() => handleToggleCards(card)}>
                                         <Card.Title className="memoryCardsTitle ">Click To Flip</Card.Title>
                                     </div>
                                 </Card.Body>

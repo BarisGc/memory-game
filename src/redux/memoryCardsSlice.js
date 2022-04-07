@@ -1,18 +1,13 @@
 //completed basılırsa işlem görmesi geliştirilecek, backend tarafında root url vb. ayarlamak gerekiyor.
 import { createSlice } from "@reduxjs/toolkit";
 
-// export const getTodosAsync = createAsyncThunk('todos/getTodosAsync', async () => {
-//     const res = await fetch('http://localhost:7000/todos');
-//     return await res.json()
-// })
-//bunun yerine axios tercih ettik
 const memoryCardDeck = [
     {
         id: 1,
         name: "vscode",
         imageUrl: '/Images/png/vscode.png',
         pairedCardId: 2,
-        isOpen: true
+        isOpen: false
     },
     {
         id: 2,
@@ -139,8 +134,10 @@ export const memoryCardsSlice = createSlice({
     reducers: {
         toggleCards: (state, action) => {
             const { id } = action.payload;
-            const item = state.items.find((item) => item.id === id);
-            item.isOpen = !item.isOpen;
+            const card = state.items.find((element) => element.id === id);
+
+            card.isOpen = !card.isOpen;
+
         },
 
         // changeActiveFilter: (state, action) => {
