@@ -6,21 +6,16 @@ import { useSelector } from 'react-redux';
 //     from "../redux/productsSlice";
 
 function ScoreBar() {
-    // const productsPurchaseInfo = useSelector(productSelectors.selectAll)
-    // const initialBudget = useSelector((state) => state.products.initialBudget);
+    const points = useSelector((state) => state.memoryCards.points);
 
-    // let spendedBudget = productsPurchaseInfo.reduce(
-    //     (previousValue, currentValue) => {
-    //         return (previousValue + currentValue.purchasedValue)
-    //     }, 0)
-
-    // let currentBudget = initialBudget - spendedBudget
     // const currentBudgetFormatted = numeral(currentBudget).format('0,0.00');
 
     return (
         // .sticky-top will not work if it is inside any container. It must be the outside-most element inside <body>
-        <Row >
-            <Col>Points</Col>
+        <Row className='scoreBar justify-content-center align-items-center mt-0 mb-2 py-2 h-100 '>
+            <Col className='score text-end '>Playing</Col>
+            <Col className='score text-center'>{points} Points</Col>
+            <Col className='score text-start '>New Game</Col>
         </Row>
     )
 }

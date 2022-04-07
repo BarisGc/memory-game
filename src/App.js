@@ -6,8 +6,8 @@ import CardList from './components/CardList'
 
 function App() {
   return (
-    <Container>
-      <Header />
+    <Container fluid>
+      {/* <Header /> */}
       <ScoreBar />
       <CardList />
     </Container>

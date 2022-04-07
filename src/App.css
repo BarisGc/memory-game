@@ -1,5 +1,15 @@
+/* General */
 body {
     background-color: gainsboro;
+}
+
+/* Header.js */
+.HeaderCard {
+    background-color: rebeccapurple;
+}
+
+.headerCardTitle {
+    font-family: cursive;
 }
 
 /* CardList.js Component*/
@@ -20,9 +30,23 @@ body {
 
 .flip-card {
     background-color: transparent;
-    width: 40vh;
+    width: 50vh;
     height: 20vh;
     perspective: 1000px;
+}
+
+@media screen and (max-width: 600px) {
+    .flip-card {
+        background-color: transparent;
+        width: 20vh;
+        height: 12vh;
+        perspective: 1000px;
+    }
+
+    .memoryCards img {
+        height: 5vh;
+        width: 5vh;
+    }
 }
 
 .flip-card-inner {
@@ -53,4 +77,26 @@ body {
 
 .flip-card-back {
     transform: rotateY(180deg);
+}
+
+/* scoreBar */
+
+.scoreBar {
+    background: linear-gradient(180deg, #2ecc71, #1abc9c);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.scoreBar a {
+    text-decoration: none;
+    cursor: text;
+}
+
+.scoreBar .score {
+    color: #FFFFFB;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
 }
