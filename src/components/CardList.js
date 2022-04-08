@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useLayoutEffect } from 'react'
 import { useSelector, useDispatch, } from 'react-redux';
-import { toggleCards } from '../redux/memoryCardsSlice'
+import { toggleCards, calculatePoints } from '../redux/memoryCardsSlice'
 import { Row, Col, Card, ListGroup } from 'react-bootstrap'
 
 function CardList() {
@@ -8,6 +8,10 @@ function CardList() {
     //states
     const [previousSelection, setPreviousSelection] = useState(null);
     const [isClickable, setIsClickable] = useState(true)
+    let initialPoints = useSelector((state) => state.memoryCards.points);
+
+    const [points, setPoints] = useState(0)
+    console.log("cardlistpoints", points)
     console.log("previousSelection", previousSelection)
     const cards = useSelector((state) => state.memoryCards.items);
 
@@ -32,21 +36,29 @@ function CardList() {
                 if (!pairOfCard.isOpen) {
                     dispatch(toggleCards({ id: card.id }))
                     dispatch(toggleCards({ id: previousSelection }))
+                    setPoints(points - 10)
+                } else {
+                    setPoints(points + 50)
                 }
+
                 setPreviousSelection(null)
                 setIsClickable(true)
-            }, 1.0 * 1000);
+            }, 0.5 * 1000);
         }
 
     }
+    useEffect(() => {
+        dispatch(calculatePoints({ points: points }))
+    }, [points])
 
-    // useEffect(() => {
-    //     //preloading image
-    //     cards.forEach((card) => {
-    //         const img = new Image();
-    //         img.src = card.imageUrl;
-    //     });
-    // }, [cards]);
+    useEffect(() => {
+        let isGameCompleted = cards.every((card) => (card.isOpen === true))
+        if (isGameCompleted) {
+            setPoints(0)
+        }
+    }, [])
+
+
 
     return (
         <>
@@ -55,10 +67,9 @@ function CardList() {
                     <Col key={card.id} className='flip-card'>
                         <Card className={`position-relative flip-card-inner ${card.isOpen ? 'active' : 'notActive'}`}>
                             <div className={`flip-card-front `}>
-                                {/* // className={item.completed ? "completed" : ""}> */}
                                 <Card.Img variant="top" src={'/Images/png/questionmark.png'} className='mx-auto mt-2' />
                                 <Card.Body className='p-1 '>
-                                    <div className={`cardFlipper stretched-link`} name={`${card.id}`} onClick={isClickable ? () => handleToggleCards(card) : ""}>
+                                    <div className={`cardFlipper stretched-link`} name={`${card.id}`} onClick={isClickable ? () => handleToggleCards(card) : undefined}>
                                         <Card.Title className="memoryCardsTitle ">Click To Flip</Card.Title>
                                     </div>
                                 </Card.Body>
@@ -66,7 +77,8 @@ function CardList() {
                             <div className={`flip-card-back `}>
                                 <Card.Img variant="top" src={card.imageUrl} className='mx-auto mt-2' />
                                 <Card.Body className='p-1'>
-                                    <div className={`cardFlipper stretched-link`} name={`${card.id}`} onClick={isClickable ? () => handleToggleCards(card) : ""}>
+                                    <div className={`cardFlipper stretched-link`} name={`${card.id}`}
+                                        onClick={isClickable ? () => handleToggleCards(card) : undefined}>
                                         <Card.Title className="memoryCardsTitle ">{card.name}</Card.Title>
                                     </div>
                                 </Card.Body>
