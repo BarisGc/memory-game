@@ -1,28 +1,24 @@
-import { useEffect, useState, useMemo, useLayoutEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch, } from 'react-redux';
 import { toggleCards, calculatePoints } from '../redux/memoryCardsSlice'
-import { Row, Col, Card, ListGroup } from 'react-bootstrap'
+import { Row, Col, Card } from 'react-bootstrap'
 
 function CardList() {
     const dispatch = useDispatch();
     //states
     const [previousSelection, setPreviousSelection] = useState(null);
     const [isClickable, setIsClickable] = useState(true)
-    let initialPoints = useSelector((state) => state.memoryCards.points);
-
-    const [points, setPoints] = useState(0)
-    console.log("cardlistpoints", points)
-    console.log("previousSelection", previousSelection)
+    let points = useSelector((state) => state.memoryCards.points);
     const cards = useSelector((state) => state.memoryCards.items);
-
-    console.log("cards", cards)
+    // console.log("cardlistpoints", points)
+    // console.log("previousSelection", previousSelection)
+    // console.log("cards", cards)
 
     const handleToggleCards = (card) => {
         const pairOfCard = cards.find((pairedCard) => pairedCard.pairedCardId === card.id);
         if ((card.isOpen && pairOfCard.isOpen) || card.id === previousSelection) {
             return
         }
-        // const isFirstFlip = cards.every((card) => card.isOpen === false);
         if (previousSelection === null) {
             dispatch(toggleCards({ id: card.id }))
             setPreviousSelection(card.id)
@@ -36,29 +32,16 @@ function CardList() {
                 if (!pairOfCard.isOpen) {
                     dispatch(toggleCards({ id: card.id }))
                     dispatch(toggleCards({ id: previousSelection }))
-                    setPoints(points - 10)
+                    dispatch(calculatePoints({ points: points - 10 }))
                 } else {
-                    setPoints(points + 50)
+                    dispatch(calculatePoints({ points: points + 50 }))
                 }
 
                 setPreviousSelection(null)
                 setIsClickable(true)
             }, 0.5 * 1000);
         }
-
     }
-    useEffect(() => {
-        dispatch(calculatePoints({ points: points }))
-    }, [points])
-
-    useEffect(() => {
-        let isGameCompleted = cards.every((card) => (card.isOpen === true))
-        if (isGameCompleted) {
-            setPoints(0)
-        }
-    }, [])
-
-
 
     return (
         <>
